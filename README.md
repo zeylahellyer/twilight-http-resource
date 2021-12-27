@@ -43,7 +43,7 @@ install it in your `Cargo.toml` file like so:
 
 ```toml
 [dependencies]
-twilight-http-resource = { git = "https://github.com/vivian/twilight-http-resource" }
+twilight-http-resource = { git = "https://github.com/zeylahellyer/twilight-http-resource" }
 ```
 
 <!-- cargo-sync-readme end -->

@@ -43,7 +43,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! twilight-http-resource = { git = "https://github.com/vivian/twilight-http-resource" }
+//! twilight-http-resource = { git = "https://github.com/zeylahellyer/twilight-http-resource" }
 //! ```
 
 #![deny(

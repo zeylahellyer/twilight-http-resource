@@ -1,17 +1,17 @@
 [package]
-authors = ["Vivian Hellyer <vivian@hellyer.dev>"]
+authors = ["Zeyla Hellyer <zeyla@hellyer.dev>"]
 categories = []
 description = "Resource-based interface for the `twilight-http` crate."
 documentation = "https://docs.rs/twilight-http-resource"
 edition = "2018"
-homepage = "https://github.com/vivian/twilight-http-resource"
+homepage = "https://github.com/zeylahellyer/twilight-http-resource"
 include = ["src/**/*.rs", "Cargo.toml"]
 keywords = ["twilight"]
 license = "ISC"
 name = "twilight-http-resource"
 publish = false
 readme = "README.md"
-repository = "https://github.com/vivian/twilight-http-resource"
+repository = "https://github.com/zeylahellyer/twilight-http-resource"
 version = "0.1.0"
 
 [dependencies]
