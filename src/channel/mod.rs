@@ -34,19 +34,19 @@ impl<'a> ChannelResource<'a> {
 
     /// Delete a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, id: ChannelId) -> DeleteChannel<'a> {
+    pub const fn delete(&self, id: ChannelId) -> DeleteChannel<'a> {
         self.0.delete_channel(id)
     }
 
     /// Get a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, id: ChannelId) -> GetChannel<'a> {
+    pub const fn get(&self, id: ChannelId) -> GetChannel<'a> {
         self.0.channel(id)
     }
 
     /// Update a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self, id: ChannelId) -> UpdateChannel<'a> {
+    pub const fn patch(&self, id: ChannelId) -> UpdateChannel<'a> {
         self.0.update_channel(id)
     }
 }
@@ -55,13 +55,17 @@ impl<'a> ChannelResource<'a> {
 impl<'a> ChannelResource<'a> {
     /// Follow a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn follow(&self, id: ChannelId, webhook_channel_id: ChannelId) -> FollowNewsChannel<'a> {
+    pub const fn follow(
+        &self,
+        id: ChannelId,
+        webhook_channel_id: ChannelId,
+    ) -> FollowNewsChannel<'a> {
         self.0.follow_news_channel(id, webhook_channel_id)
     }
 
     /// Trigger a typing indicator in a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn typing(&self, id: ChannelId) -> CreateTypingTrigger<'a> {
+    pub const fn typing(&self, id: ChannelId) -> CreateTypingTrigger<'a> {
         self.0.create_typing_trigger(id)
     }
 }

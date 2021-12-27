@@ -17,30 +17,30 @@ impl<'a> GuildEmojiResource<'a> {
 
     /// Delete a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, emoji_id: EmojiId) -> DeleteEmoji<'a> {
+    pub const fn delete(&self, emoji_id: EmojiId) -> DeleteEmoji<'a> {
         self.0.delete_emoji(self.1, emoji_id)
     }
 
     /// Get a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, emoji_id: EmojiId) -> GetEmoji<'a> {
+    pub const fn get(&self, emoji_id: EmojiId) -> GetEmoji<'a> {
         self.0.emoji(self.1, emoji_id)
     }
 
     /// List a guild's emojis.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetEmojis<'a> {
+    pub const fn list(&self) -> GetEmojis<'a> {
         self.0.emojis(self.1)
     }
 
     /// Update a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self, emoji_id: EmojiId) -> UpdateEmoji<'a> {
+    pub const fn patch(&self, emoji_id: EmojiId) -> UpdateEmoji<'a> {
         self.0.update_emoji(self.1, emoji_id)
     }
 
     /// Create a guild emoji.
-    pub fn post(&self, name: impl Into<String>, image: impl Into<String>) -> CreateEmoji<'a> {
+    pub const fn post(&self, name: &'a str, image: &'a str) -> CreateEmoji<'a> {
         self.0.create_emoji(self.1, name, image)
     }
 }

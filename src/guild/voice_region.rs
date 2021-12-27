@@ -14,7 +14,7 @@ impl<'a> GuildVoiceRegionResource<'a> {
 
     /// List a guild's voice regions.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetGuildVoiceRegions<'a> {
+    pub const fn list(&self) -> GetGuildVoiceRegions<'a> {
         self.0.guild_voice_regions(self.1)
     }
 }

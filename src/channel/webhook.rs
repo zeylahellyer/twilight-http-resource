@@ -23,7 +23,7 @@ impl<'a> ChannelWebhookResource<'a> {
 
     /// Create a channel webhook.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: impl Into<String>) -> CreateWebhook<'a> {
+    pub fn post(&self, name: &'a str) -> CreateWebhook<'a> {
         self.0.create_webhook(self.1, name)
     }
 }

@@ -14,7 +14,7 @@ impl<'a> GuildPreviewResource<'a> {
 
     /// Get a guild's preview.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetGuildPreview<'a> {
+    pub const fn get(&self) -> GetGuildPreview<'a> {
         self.0.guild_preview(self.1)
     }
 }

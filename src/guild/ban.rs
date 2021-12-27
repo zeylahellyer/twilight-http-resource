@@ -17,25 +17,25 @@ impl<'a> GuildBanResource<'a> {
 
     /// Delete a guild ban.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, user_id: UserId) -> DeleteBan<'a> {
+    pub const fn delete(&self, user_id: UserId) -> DeleteBan<'a> {
         self.0.delete_ban(self.1, user_id)
     }
 
     /// Get a guild ban.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, user_id: UserId) -> GetBan<'a> {
+    pub const fn get(&self, user_id: UserId) -> GetBan<'a> {
         self.0.ban(self.1, user_id)
     }
 
     /// List a guild's bans.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetBans<'a> {
+    pub const fn list(&self) -> GetBans<'a> {
         self.0.bans(self.1)
     }
 
     /// Create a guild ban.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, user_id: UserId) -> CreateBan<'a> {
+    pub const fn post(&self, user_id: UserId) -> CreateBan<'a> {
         self.0.create_ban(self.1, user_id)
     }
 }

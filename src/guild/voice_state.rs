@@ -17,7 +17,7 @@ impl<'a> GuildVoiceStateResource<'a> {
 
     /// Update a guild's voice state.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self, channel_id: ChannelId) -> UpdateUserVoiceState<'a> {
+    pub const fn patch(&self, channel_id: ChannelId) -> UpdateUserVoiceState<'a> {
         self.0.update_user_voice_state(self.1, self.2, channel_id)
     }
 }
@@ -26,7 +26,10 @@ impl<'a> GuildVoiceStateResource<'a> {
 impl<'a> GuildVoiceStateResource<'a> {
     /// Update the current user's voice state in a guild.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch_current_user(&self, channel_id: ChannelId) -> UpdateCurrentUserVoiceState<'a> {
+    pub const fn patch_current_user(
+        &self,
+        channel_id: ChannelId,
+    ) -> UpdateCurrentUserVoiceState<'a> {
         self.0.update_current_user_voice_state(self.1, channel_id)
     }
 }

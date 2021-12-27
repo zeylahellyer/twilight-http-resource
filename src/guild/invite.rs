@@ -14,7 +14,7 @@ impl<'a> GuildInviteResource<'a> {
 
     /// List a guild's invites.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetGuildInvites<'a> {
+    pub const fn list(&self) -> GetGuildInvites<'a> {
         self.0.guild_invites(self.1)
     }
 }

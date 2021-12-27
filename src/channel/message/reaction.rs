@@ -17,13 +17,13 @@ impl<'a> ChannelMessageReactionResource<'a> {
 
     /// Delete all reactions on a channel message.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete_list(&self) -> DeleteAllReactions<'a> {
+    pub const fn delete_list(&self) -> DeleteAllReactions<'a> {
         self.0.delete_all_reactions(self.1, self.2)
     }
 
     /// List a channel message's reactions.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self, emoji: RequestReactionType) -> GetReactions<'a> {
+    pub const fn list(&self, emoji: &'a RequestReactionType<'a>) -> GetReactions<'a> {
         self.0.reactions(self.1, self.2, emoji)
     }
 }

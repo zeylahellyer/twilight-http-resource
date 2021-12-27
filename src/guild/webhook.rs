@@ -14,7 +14,7 @@ impl<'a> GuildWebhookResource<'a> {
 
     /// List a guild's webhooks.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetGuildWebhooks<'a> {
+    pub const fn list(&self) -> GetGuildWebhooks<'a> {
         self.0.guild_webhooks(self.1)
     }
 }

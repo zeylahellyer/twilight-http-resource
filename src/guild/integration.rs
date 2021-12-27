@@ -17,13 +17,13 @@ impl<'a> GuildIntegrationResource<'a> {
 
     /// Delete a guild's integration.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, integration_id: IntegrationId) -> DeleteGuildIntegration<'a> {
+    pub const fn delete(&self, integration_id: IntegrationId) -> DeleteGuildIntegration<'a> {
         self.0.delete_guild_integration(self.1, integration_id)
     }
 
     /// List a guild's integrations.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetGuildIntegrations<'a> {
+    pub const fn list(&self) -> GetGuildIntegrations<'a> {
         self.0.guild_integrations(self.1)
     }
 }

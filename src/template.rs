@@ -13,8 +13,8 @@ impl<'a> TemplateResource<'a> {
 
     /// Get a template.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, code: impl Into<String>) -> GetTemplate<'a> {
-        self.0.get_template(code)
+    pub const fn get(&self, template_code: &'a str) -> GetTemplate<'a> {
+        self.0.get_template(template_code)
     }
 }
 

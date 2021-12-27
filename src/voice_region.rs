@@ -13,7 +13,7 @@ impl<'a> VoiceRegionResource<'a> {
 
     /// List the voice regions.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetVoiceRegions<'a> {
+    pub const fn list(&self) -> GetVoiceRegions<'a> {
         self.0.voice_regions()
     }
 }

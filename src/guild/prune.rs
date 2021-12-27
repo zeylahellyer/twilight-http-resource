@@ -17,13 +17,13 @@ impl<'a> GuildPruneRpc<'a> {
 
     /// Get a guild's prune information.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetGuildPruneCount<'a> {
+    pub const fn get(&self) -> GetGuildPruneCount<'a> {
         self.0.guild_prune_count(self.1)
     }
 
     /// Begin a guild prune.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self) -> CreateGuildPrune<'a> {
+    pub const fn post(&self) -> CreateGuildPrune<'a> {
         self.0.create_guild_prune(self.1)
     }
 }

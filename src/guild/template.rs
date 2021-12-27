@@ -19,7 +19,7 @@ impl<'a> GuildTemplateResource<'a> {
     }
 
     /// Delete a guild's template.
-    pub fn delete(&self, code: impl Into<String>) -> DeleteTemplate<'a> {
+    pub fn delete(&self, code: &'a str) -> DeleteTemplate<'a> {
         self.0.delete_template(self.1, code)
     }
 
@@ -31,7 +31,7 @@ impl<'a> GuildTemplateResource<'a> {
 
     /// Update a guild template.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self, template_code: impl Into<String>) -> UpdateTemplate<'a> {
+    pub fn patch(&self, template_code: &'a str) -> UpdateTemplate<'a> {
         self.0.update_template(self.1, template_code)
     }
 
@@ -43,7 +43,7 @@ impl<'a> GuildTemplateResource<'a> {
     ///
     /// [`Client::create_template`]: twilight_http::Client::create_template
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: impl Into<String>) -> Result<CreateTemplate<'a>, CreateTemplateError> {
+    pub fn post(&self, name: &'a str) -> Result<CreateTemplate<'a>, CreateTemplateError> {
         self.0.create_template(self.1, name)
     }
 }
@@ -52,7 +52,7 @@ impl<'a> GuildTemplateResource<'a> {
 impl<'a> GuildTemplateResource<'a> {
     /// Sync a guild's template.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn sync(&self, code: impl Into<String>) -> SyncTemplate<'a> {
+    pub fn sync(&self, code: &'a str) -> SyncTemplate<'a> {
         self.0.sync_template(self.1, code)
     }
 }

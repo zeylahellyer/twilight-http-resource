@@ -17,13 +17,13 @@ impl<'a> GuildWelcomeScreenResource<'a> {
 
     /// Get a guild's welcome screen.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetGuildWelcomeScreen<'a> {
+    pub const fn get(&self) -> GetGuildWelcomeScreen<'a> {
         self.0.guild_welcome_screen(self.1)
     }
 
     /// Update a guild's welcome screen.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self) -> UpdateGuildWelcomeScreen<'a> {
+    pub const fn patch(&self) -> UpdateGuildWelcomeScreen<'a> {
         self.0.update_guild_welcome_screen(self.1)
     }
 }

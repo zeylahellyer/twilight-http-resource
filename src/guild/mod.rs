@@ -54,19 +54,19 @@ impl<'a> GuildResource<'a> {
 
     /// Delete a guild.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, id: GuildId) -> DeleteGuild<'a> {
+    pub const fn delete(&self, id: GuildId) -> DeleteGuild<'a> {
         self.0.delete_guild(id)
     }
 
     /// Get a guild.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, id: GuildId) -> GetGuild<'a> {
+    pub const fn get(&self, id: GuildId) -> GetGuild<'a> {
         self.0.guild(id)
     }
 
     /// Update a guild.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self, id: GuildId) -> UpdateGuild<'a> {
+    pub const fn patch(&self, id: GuildId) -> UpdateGuild<'a> {
         self.0.update_guild(id)
     }
 
@@ -78,7 +78,7 @@ impl<'a> GuildResource<'a> {
     ///
     /// [`Client::create_guild`]: twilight_http::Client::create_guild
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: impl Into<String>) -> Result<CreateGuild<'a>, CreateGuildError> {
+    pub fn post(&self, name: String) -> Result<CreateGuild<'a>, CreateGuildError> {
         self.0.create_guild(name)
     }
 }
@@ -101,8 +101,8 @@ impl<'a> GuildResource<'a> {
     #[must_use = "this is a builder and does nothing on its own"]
     pub fn post_from_template(
         &self,
-        template_code: impl Into<String>,
-        name: impl Into<String>,
+        template_code: &'a str,
+        name: &'a str,
     ) -> Result<CreateGuildFromTemplate<'_>, CreateGuildFromTemplateError> {
         self.0.create_guild_from_template(template_code, name)
     }

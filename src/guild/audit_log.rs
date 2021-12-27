@@ -14,7 +14,7 @@ impl<'a> GuildAuditLogResource<'a> {
 
     /// Get a guild's audit log entries.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetAuditLog<'a> {
+    pub const fn list(&self) -> GetAuditLog<'a> {
         self.0.audit_log(self.1)
     }
 }

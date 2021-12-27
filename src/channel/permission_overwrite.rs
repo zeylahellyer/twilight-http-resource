@@ -18,13 +18,13 @@ impl<'a> ChannelPermissionOverwriteResource<'a> {
 
     /// Get a channel's permission overwrites.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self) -> DeleteChannelPermission<'a> {
+    pub const fn delete(&self) -> DeleteChannelPermission<'a> {
         self.0.delete_channel_permission(self.1)
     }
 
     /// Put a channel permission overwrite.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn put(&self, allow: Permissions, deny: Permissions) -> UpdateChannelPermission<'a> {
+    pub const fn put(&self, allow: Permissions, deny: Permissions) -> UpdateChannelPermission<'a> {
         self.0.update_channel_permission(self.1, allow, deny)
     }
 }

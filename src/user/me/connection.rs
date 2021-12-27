@@ -13,7 +13,7 @@ impl<'a> UserMeConnectionResource<'a> {
 
     /// List the current user's connections.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetCurrentUserConnections<'a> {
+    pub const fn list(&self) -> GetCurrentUserConnections<'a> {
         self.0.current_user_connections()
     }
 }

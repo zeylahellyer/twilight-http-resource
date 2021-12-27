@@ -16,7 +16,7 @@ impl<'a> UserPrivateChannelResource<'a> {
 
     /// Create a private channel with a user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self) -> CreatePrivateChannel<'a> {
+    pub const fn post(&self) -> CreatePrivateChannel<'a> {
         self.0.create_private_channel(self.1)
     }
 }

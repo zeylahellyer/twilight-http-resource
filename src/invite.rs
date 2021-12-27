@@ -13,7 +13,7 @@ impl<'a> InviteResource<'a> {
 
     /// Get an invite.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, code: impl Into<String>) -> GetInvite<'a> {
+    pub const fn get(&self, code: &'a str) -> GetInvite<'a> {
         self.0.invite(code)
     }
 }

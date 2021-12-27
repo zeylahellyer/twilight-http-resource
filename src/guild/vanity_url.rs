@@ -14,7 +14,7 @@ impl<'a> GuildVanityUrlResource<'a> {
 
     /// Get a guild's vanity URL.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetGuildVanityUrl<'a> {
+    pub const fn get(&self) -> GetGuildVanityUrl<'a> {
         self.0.guild_vanity_url(self.1)
     }
 }

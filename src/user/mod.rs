@@ -22,7 +22,7 @@ impl<'a> UserResource<'a> {
 
     /// Get a user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self, id: UserId) -> GetUser<'a> {
+    pub const fn get(&self, id: UserId) -> GetUser<'a> {
         self.0.user(id)
     }
 }

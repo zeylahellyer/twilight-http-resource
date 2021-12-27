@@ -23,13 +23,13 @@ impl<'a> UserMeResource<'a> {
 
     /// Get the current user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetCurrentUser<'a> {
+    pub const fn get(&self) -> GetCurrentUser<'a> {
         self.0.current_user()
     }
 
     /// Update the current user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn patch(&self) -> UpdateCurrentUser<'a> {
+    pub const fn patch(&self) -> UpdateCurrentUser<'a> {
         self.0.update_current_user()
     }
 }

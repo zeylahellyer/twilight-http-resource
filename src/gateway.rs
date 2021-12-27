@@ -13,7 +13,7 @@ impl<'a> GatewayResource<'a> {
 
     /// Get a gateway.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn get(&self) -> GetGateway<'a> {
+    pub const fn get(&self) -> GetGateway<'a> {
         self.0.gateway()
     }
 }

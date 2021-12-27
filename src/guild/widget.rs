@@ -15,12 +15,12 @@ impl<'a> GuildWidgetResource<'a> {
     }
 
     /// Get a guild's widget.
-    pub fn get(&self) -> GetGuildWidget<'a> {
+    pub const fn get(&self) -> GetGuildWidget<'a> {
         self.0.guild_widget(self.1)
     }
 
     /// Update a guild's widget.
-    pub fn patch(&self, role_id: RoleId) -> UpdateGuildWidget<'a> {
+    pub const fn patch(&self, role_id: RoleId) -> UpdateGuildWidget<'a> {
         self.0.update_guild_widget(self.1, role_id)
     }
 }

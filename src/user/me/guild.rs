@@ -17,13 +17,13 @@ impl<'a> UserMeGuildResource<'a> {
 
     /// Leave one of the current user's guilds.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn delete(&self, guild_id: GuildId) -> LeaveGuild<'a> {
+    pub const fn delete(&self, guild_id: GuildId) -> LeaveGuild<'a> {
         self.0.leave_guild(guild_id)
     }
 
     /// List the current user's guilds.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn list(&self) -> GetCurrentUserGuilds<'a> {
+    pub const fn list(&self) -> GetCurrentUserGuilds<'a> {
         self.0.current_user_guilds()
     }
 }
