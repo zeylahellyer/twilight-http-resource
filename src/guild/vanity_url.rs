@@ -7,13 +7,11 @@ pub struct GuildVanityUrlResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildVanityUrlResource<'a> {
     /// Create a resource instance to work with a guild's vanity URL.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Get a guild's vanity URL.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self) -> GetGuildVanityUrl<'a> {
         self.0.guild_vanity_url(self.1)
     }

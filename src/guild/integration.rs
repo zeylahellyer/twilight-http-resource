@@ -13,13 +13,11 @@ pub struct GuildIntegrationResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildIntegrationResource<'a> {
     /// Create a resource instance to work with a guild's integrations.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete a guild's integration.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(
         &self,
         integration_id: Id<IntegrationMarker>,
@@ -28,7 +26,6 @@ impl<'a> GuildIntegrationResource<'a> {
     }
 
     /// List a guild's integrations.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetGuildIntegrations<'a> {
         self.0.guild_integrations(self.1)
     }

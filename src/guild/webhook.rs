@@ -7,13 +7,11 @@ pub struct GuildWebhookResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildWebhookResource<'a> {
     /// Create a resource instance to work with a guild's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// List a guild's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetGuildWebhooks<'a> {
         self.0.guild_webhooks(self.1)
     }

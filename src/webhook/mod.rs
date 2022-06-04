@@ -16,25 +16,21 @@ pub struct WebhookResource<'a>(&'a Client);
 
 impl<'a> WebhookResource<'a> {
     /// Create a resource instance to work with webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Delete a webhook.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, id: Id<WebhookMarker>) -> DeleteWebhook<'a> {
         self.0.delete_webhook(id)
     }
 
     /// Get a webhook.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, id: Id<WebhookMarker>) -> GetWebhook<'a> {
         self.0.webhook(id)
     }
 
     /// Update a webhook.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, id: Id<WebhookMarker>) -> UpdateWebhook<'a> {
         self.0.update_webhook(id)
     }
@@ -43,7 +39,6 @@ impl<'a> WebhookResource<'a> {
 /// RPC calls.
 impl<'a> WebhookResource<'a> {
     /// Update a webhook with a token.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch_with_token(
         &self,
         id: Id<WebhookMarker>,
@@ -56,7 +51,6 @@ impl<'a> WebhookResource<'a> {
 /// 1:M webhook relationships.
 impl<'a> WebhookResource<'a> {
     /// Work with a webhook's messages.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn messages(
         &self,
         id: Id<WebhookMarker>,

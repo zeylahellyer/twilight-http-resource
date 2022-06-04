@@ -13,7 +13,6 @@ pub struct GuildVoiceStateResource<'a>(&'a Client, Id<GuildMarker>, Id<UserMarke
 
 impl<'a> GuildVoiceStateResource<'a> {
     /// Create a resource instance to work with a guild's voice states.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(
         client: &'a Client,
         guild_id: Id<GuildMarker>,
@@ -23,7 +22,6 @@ impl<'a> GuildVoiceStateResource<'a> {
     }
 
     /// Update a guild's voice state.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, channel_id: Id<ChannelMarker>) -> UpdateUserVoiceState<'a> {
         self.0.update_user_voice_state(self.1, self.2, channel_id)
     }
@@ -32,7 +30,6 @@ impl<'a> GuildVoiceStateResource<'a> {
 /// Special calls.
 impl<'a> GuildVoiceStateResource<'a> {
     /// Update the current user's voice state in a guild.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch_current_user(
         &self,
         channel_id: Id<ChannelMarker>,

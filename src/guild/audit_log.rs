@@ -7,13 +7,11 @@ pub struct GuildAuditLogResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildAuditLogResource<'a> {
     /// Create a resource instance to work with a guild's audit log entries.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Get a guild's audit log entries.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetAuditLog<'a> {
         self.0.audit_log(self.1)
     }

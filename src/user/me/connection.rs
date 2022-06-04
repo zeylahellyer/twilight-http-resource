@@ -6,13 +6,11 @@ pub struct UserMeConnectionResource<'a>(&'a Client);
 
 impl<'a> UserMeConnectionResource<'a> {
     /// Create a resource instance to work with the current user's connections.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// List the current user's connections.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetCurrentUserConnections<'a> {
         self.0.current_user_connections()
     }

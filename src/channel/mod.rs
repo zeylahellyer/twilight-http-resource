@@ -27,25 +27,21 @@ pub struct ChannelResource<'a>(&'a Client);
 
 impl<'a> ChannelResource<'a> {
     /// Create a resource instance to work with channels.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Delete a channel.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, id: Id<ChannelMarker>) -> DeleteChannel<'a> {
         self.0.delete_channel(id)
     }
 
     /// Get a channel.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, id: Id<ChannelMarker>) -> GetChannel<'a> {
         self.0.channel(id)
     }
 
     /// Update a channel.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, id: Id<ChannelMarker>) -> UpdateChannel<'a> {
         self.0.update_channel(id)
     }
@@ -54,7 +50,6 @@ impl<'a> ChannelResource<'a> {
 /// RPC calls.
 impl<'a> ChannelResource<'a> {
     /// Follow a channel.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn follow(
         &self,
         id: Id<ChannelMarker>,
@@ -64,7 +59,6 @@ impl<'a> ChannelResource<'a> {
     }
 
     /// Trigger a typing indicator in a channel.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn typing(&self, id: Id<ChannelMarker>) -> CreateTypingTrigger<'a> {
         self.0.create_typing_trigger(id)
     }
@@ -73,19 +67,16 @@ impl<'a> ChannelResource<'a> {
 /// 1:M channel relationships.
 impl<'a> ChannelResource<'a> {
     /// Work with a channel's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn invites(&self, channel_id: Id<ChannelMarker>) -> ChannelInviteResource<'a> {
         ChannelInviteResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's messages.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn messages(&self, channel_id: Id<ChannelMarker>) -> ChannelMessageResource<'a> {
         ChannelMessageResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's permission overwrites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn permission_overwrites(
         &self,
         channel_id: Id<ChannelMarker>,
@@ -94,13 +85,11 @@ impl<'a> ChannelResource<'a> {
     }
 
     /// Work with a channel's pins.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn pins(&self, channel_id: Id<ChannelMarker>) -> ChannelPinResource<'a> {
         ChannelPinResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn webhooks(&self, channel_id: Id<ChannelMarker>) -> ChannelWebhookResource<'a> {
         ChannelWebhookResource::new(self.0, channel_id)
     }

@@ -10,19 +10,16 @@ pub struct ChannelInviteResource<'a>(&'a Client, Id<ChannelMarker>);
 
 impl<'a> ChannelInviteResource<'a> {
     /// Create a resource instance to work with a channel's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, channel_id: Id<ChannelMarker>) -> Self {
         Self(client, channel_id)
     }
 
     /// List a channel's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetChannelInvites<'a> {
         self.0.channel_invites(self.1)
     }
 
     /// Create a channel invite.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn post(&self) -> CreateInvite<'a> {
         self.0.create_invite(self.1)
     }

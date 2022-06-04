@@ -13,31 +13,26 @@ pub struct GuildEmojiResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildEmojiResource<'a> {
     /// Create a resource instance to work with a guild's emojis.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete a guild emoji.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, emoji_id: Id<EmojiMarker>) -> DeleteEmoji<'a> {
         self.0.delete_emoji(self.1, emoji_id)
     }
 
     /// Get a guild emoji.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, emoji_id: Id<EmojiMarker>) -> GetEmoji<'a> {
         self.0.emoji(self.1, emoji_id)
     }
 
     /// List a guild's emojis.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetEmojis<'a> {
         self.0.emojis(self.1)
     }
 
     /// Update a guild emoji.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, emoji_id: Id<EmojiMarker>) -> UpdateEmoji<'a> {
         self.0.update_emoji(self.1, emoji_id)
     }

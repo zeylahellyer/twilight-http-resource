@@ -6,13 +6,11 @@ pub struct InviteResource<'a>(&'a Client);
 
 impl<'a> InviteResource<'a> {
     /// Create a resource instance to work with invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Get an invite.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, code: &'a str) -> GetInvite<'a> {
         self.0.invite(code)
     }

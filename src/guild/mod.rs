@@ -49,25 +49,21 @@ pub struct GuildResource<'a>(&'a Client);
 
 impl<'a> GuildResource<'a> {
     /// Create a resource instance to work with guilds.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Delete a guild.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, id: Id<GuildMarker>) -> DeleteGuild<'a> {
         self.0.delete_guild(id)
     }
 
     /// Get a guild.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, id: Id<GuildMarker>) -> GetGuild<'a> {
         self.0.guild(id)
     }
 
     /// Update a guild.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, id: Id<GuildMarker>) -> UpdateGuild<'a> {
         self.0.update_guild(id)
     }
@@ -79,7 +75,6 @@ impl<'a> GuildResource<'a> {
     /// Refer to [`Client::create_guild`] for error information.
     ///
     /// [`Client::create_guild`]: twilight_http::Client::create_guild
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn post(&self, name: String) -> Result<CreateGuild<'a>, CreateGuildError> {
         self.0.create_guild(name)
     }
@@ -88,7 +83,6 @@ impl<'a> GuildResource<'a> {
 /// RPC calls.
 impl<'a> GuildResource<'a> {
     /// Work with a guild's prune capability.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn prune(&self, guild_id: Id<GuildMarker>) -> GuildPruneRpc<'a> {
         GuildPruneRpc::new(self.0, guild_id)
     }
@@ -100,7 +94,6 @@ impl<'a> GuildResource<'a> {
     /// Refer to [`Client::create_guild_from_template`] for error information.
     ///
     /// [`Client::create_guild_from_template`]: twilight_http::Client::create_guild_from_template
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn post_from_template(
         &self,
         template_code: &'a str,
@@ -113,19 +106,16 @@ impl<'a> GuildResource<'a> {
 /// 1:1 guild relationships.
 impl<'a> GuildResource<'a> {
     /// Work with a guild's preview.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn preview(&self, guild_id: Id<GuildMarker>) -> GuildPreviewResource<'a> {
         GuildPreviewResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's vanity URL.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn vanity_url(&self, guild_id: Id<GuildMarker>) -> GuildVanityUrlResource<'a> {
         GuildVanityUrlResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's welcome screen.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn welcome_screen(
         &self,
         guild_id: Id<GuildMarker>,
@@ -137,61 +127,51 @@ impl<'a> GuildResource<'a> {
 /// 1:M guild relationships.
 impl<'a> GuildResource<'a> {
     /// Work with a guild's audit log entries.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn audit_logs(&self, guild_id: Id<GuildMarker>) -> GuildAuditLogResource<'a> {
         GuildAuditLogResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's bans.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn bans(&self, guild_id: Id<GuildMarker>) -> GuildBanResource<'a> {
         GuildBanResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's channels.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn channels(&self, guild_id: Id<GuildMarker>) -> GuildChannelResource<'a> {
         GuildChannelResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's emojis.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn emojis(&self, guild_id: Id<GuildMarker>) -> GuildEmojiResource<'a> {
         GuildEmojiResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's integrations.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn integrations(&self, guild_id: Id<GuildMarker>) -> GuildIntegrationResource<'a> {
         GuildIntegrationResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn invites(&self, guild_id: Id<GuildMarker>) -> GuildInviteResource<'a> {
         GuildInviteResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's members.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn members(&self, guild_id: Id<GuildMarker>) -> GuildMemberResource<'a> {
         GuildMemberResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's roles.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn roles(&self, guild_id: Id<GuildMarker>) -> GuildRoleResource<'a> {
         GuildRoleResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's templates.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn templates(&self, guild_id: Id<GuildMarker>) -> GuildTemplateResource<'a> {
         GuildTemplateResource::new(self.0, guild_id)
     }
 
     /// Work with a guild's voice states.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn voice_states(
         &self,
         guild_id: Id<GuildMarker>,
@@ -201,7 +181,6 @@ impl<'a> GuildResource<'a> {
     }
 
     /// Work with a guild's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn webhooks(&self, guild_id: Id<GuildMarker>) -> GuildWebhookResource<'a> {
         GuildWebhookResource::new(self.0, guild_id)
     }

@@ -6,13 +6,11 @@ pub struct TemplateResource<'a>(&'a Client);
 
 impl<'a> TemplateResource<'a> {
     /// Create a resource instance to work with templates.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Get a template.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, template_code: &'a str) -> GetTemplate<'a> {
         self.0.get_template(template_code)
     }

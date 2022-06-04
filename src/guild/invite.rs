@@ -7,13 +7,11 @@ pub struct GuildInviteResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildInviteResource<'a> {
     /// Create a resource instance to work with a guild's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// List a guild's invites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetGuildInvites<'a> {
         self.0.guild_invites(self.1)
     }

@@ -16,19 +16,16 @@ pub struct UserMeResource<'a>(&'a Client);
 
 impl<'a> UserMeResource<'a> {
     /// Create a resource instance to work with the current user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Get the current user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self) -> GetCurrentUser<'a> {
         self.0.current_user()
     }
 
     /// Update the current user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self) -> UpdateCurrentUser<'a> {
         self.0.update_current_user()
     }
@@ -37,7 +34,6 @@ impl<'a> UserMeResource<'a> {
 /// 1:M user guild relationships.
 impl<'a> UserMeResource<'a> {
     /// Work with the current user's guilds.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn guilds(&self) -> UserMeGuildResource<'a> {
         UserMeGuildResource::new(self.0)
     }

@@ -10,19 +10,16 @@ pub struct GuildPruneRpc<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildPruneRpc<'a> {
     /// Create a resource instance to work with a guild's pruning.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Get a guild's prune information.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self) -> GetGuildPruneCount<'a> {
         self.0.guild_prune_count(self.1)
     }
 
     /// Begin a guild prune.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn post(&self) -> CreateGuildPrune<'a> {
         self.0.create_guild_prune(self.1)
     }

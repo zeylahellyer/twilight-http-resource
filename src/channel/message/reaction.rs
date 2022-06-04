@@ -13,7 +13,6 @@ pub struct ChannelMessageReactionResource<'a>(&'a Client, Id<ChannelMarker>, Id<
 
 impl<'a> ChannelMessageReactionResource<'a> {
     /// Create a resource instance to work with a channel message's reactions.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(
         client: &'a Client,
         channel_id: Id<ChannelMarker>,
@@ -23,13 +22,11 @@ impl<'a> ChannelMessageReactionResource<'a> {
     }
 
     /// Delete all reactions on a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete_list(&self) -> DeleteAllReactions<'a> {
         self.0.delete_all_reactions(self.1, self.2)
     }
 
     /// List a channel message's reactions.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self, emoji: &'a RequestReactionType<'a>) -> GetReactions<'a> {
         self.0.reactions(self.1, self.2, emoji)
     }

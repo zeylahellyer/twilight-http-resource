@@ -13,7 +13,6 @@ pub struct GuildMemberRoleResource<'a>(&'a Client, Id<GuildMarker>, Id<UserMarke
 
 impl<'a> GuildMemberRoleResource<'a> {
     /// Create a resource instance to work with a guild member's roles.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(
         client: &'a Client,
         guild_id: Id<GuildMarker>,
@@ -23,13 +22,11 @@ impl<'a> GuildMemberRoleResource<'a> {
     }
 
     /// Remove a role from a guild member.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, role_id: Id<RoleMarker>) -> RemoveRoleFromMember<'a> {
         self.0.remove_guild_member_role(self.1, self.2, role_id)
     }
 
     /// Add a role to a guild member.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn put(&self, role_id: Id<RoleMarker>) -> AddRoleToMember<'a> {
         self.0.add_guild_member_role(self.1, self.2, role_id)
     }

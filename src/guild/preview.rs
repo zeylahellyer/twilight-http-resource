@@ -7,13 +7,11 @@ pub struct GuildPreviewResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildPreviewResource<'a> {
     /// Create a resource instance to work with a guild's preview.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Get a guild's preview.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self) -> GetGuildPreview<'a> {
         self.0.guild_preview(self.1)
     }

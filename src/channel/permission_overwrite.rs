@@ -14,19 +14,16 @@ pub struct ChannelPermissionOverwriteResource<'a>(&'a Client, Id<ChannelMarker>)
 impl<'a> ChannelPermissionOverwriteResource<'a> {
     /// Create a resource instance to work with a channel's permission
     /// overwrites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, channel_id: Id<ChannelMarker>) -> Self {
         Self(client, channel_id)
     }
 
     /// Get a channel's permission overwrites.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self) -> DeleteChannelPermission<'a> {
         self.0.delete_channel_permission(self.1)
     }
 
     /// Put a channel permission overwrite.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn put(
         &self,
         permission_overwrite: &PermissionOverwrite,

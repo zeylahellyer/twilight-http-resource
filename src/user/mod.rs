@@ -15,13 +15,11 @@ pub struct UserResource<'a>(&'a Client);
 
 impl<'a> UserResource<'a> {
     /// Create a resource instance to work with users.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Get a user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, id: Id<UserMarker>) -> GetUser<'a> {
         self.0.user(id)
     }
@@ -30,13 +28,11 @@ impl<'a> UserResource<'a> {
 /// 1:1 user relationships.
 impl<'a> UserResource<'a> {
     /// Work with the current user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn me(&self) -> UserMeResource<'a> {
         UserMeResource::new(self.0)
     }
 
     /// Work with a user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn private_channel(&self, user_id: Id<UserMarker>) -> UserPrivateChannelResource<'a> {
         UserPrivateChannelResource::new(self.0, user_id)
     }

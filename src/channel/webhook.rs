@@ -11,13 +11,11 @@ pub struct ChannelWebhookResource<'a>(&'a Client, Id<ChannelMarker>);
 
 impl<'a> ChannelWebhookResource<'a> {
     /// Create a resource instance to work with a channel's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, channel_id: Id<ChannelMarker>) -> Self {
         Self(client, channel_id)
     }
 
     /// List a channel's webhooks.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn list(&self) -> GetChannelWebhooks<'a> {
         self.0.channel_webhooks(self.1)
     }
@@ -29,7 +27,6 @@ impl<'a> ChannelWebhookResource<'a> {
     /// Refer to [`Client::create_webhook`] for error information.
     ///
     /// [`Client::create_webhook`]: twilight_http::Client::create_webhook
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn post(&self, name: &'a str) -> Result<CreateWebhook<'a>, ValidationError> {
         self.0.create_webhook(self.1, name)
     }

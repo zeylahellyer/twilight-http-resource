@@ -22,7 +22,6 @@ pub struct ChannelMessageResource<'a>(&'a Client, Id<ChannelMarker>);
 
 impl<'a> ChannelMessageResource<'a> {
     /// Create a resource instance to work with a channel's messages.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<ChannelMarker>) -> Self {
         Self(client, guild_id)
     }
@@ -33,31 +32,26 @@ impl<'a> ChannelMessageResource<'a> {
     }
 
     /// Delete a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn delete(&self, message_id: Id<MessageMarker>) -> DeleteMessage<'a> {
         self.0.delete_message(self.1, message_id)
     }
 
     /// Get a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self, message_id: Id<MessageMarker>) -> GetMessage<'a> {
         self.0.message(self.1, message_id)
     }
 
     /// List a channel's messages.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn list(&self) -> GetChannelMessages<'a> {
         self.0.channel_messages(self.1)
     }
 
     /// Update a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch(&self, message_id: Id<MessageMarker>) -> UpdateMessage<'a> {
         self.0.update_message(self.1, message_id)
     }
 
     /// Create a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn post(&self) -> CreateMessage<'a> {
         self.0.create_message(self.1)
     }
@@ -66,7 +60,6 @@ impl<'a> ChannelMessageResource<'a> {
 /// RPC calls.
 impl<'a> ChannelMessageResource<'a> {
     /// Crosspost a channel message.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn crosspost(&self, message_id: Id<MessageMarker>) -> CrosspostMessage<'a> {
         self.0.crosspost_message(self.1, message_id)
     }

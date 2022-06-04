@@ -13,7 +13,6 @@ pub struct GuildTemplateResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildTemplateResource<'a> {
     /// Create a resource instance to work with a guild's templates.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
@@ -24,13 +23,11 @@ impl<'a> GuildTemplateResource<'a> {
     }
 
     /// List a guild's templates.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn list(&self) -> GetTemplates<'a> {
         self.0.get_templates(self.1)
     }
 
     /// Update a guild template.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn patch(&self, template_code: &'a str) -> UpdateTemplate<'a> {
         self.0.update_template(self.1, template_code)
     }
@@ -42,7 +39,6 @@ impl<'a> GuildTemplateResource<'a> {
     /// Refer to [`Client::create_template`] for error information.
     ///
     /// [`Client::create_template`]: twilight_http::Client::create_template
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn post(&self, name: &'a str) -> Result<CreateTemplate<'a>, ValidationError> {
         self.0.create_template(self.1, name)
     }
@@ -51,7 +47,6 @@ impl<'a> GuildTemplateResource<'a> {
 /// RPC calls.
 impl<'a> GuildTemplateResource<'a> {
     /// Sync a guild's template.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub fn sync(&self, code: &'a str) -> SyncTemplate<'a> {
         self.0.sync_template(self.1, code)
     }

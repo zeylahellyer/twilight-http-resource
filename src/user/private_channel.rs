@@ -9,13 +9,11 @@ pub struct UserPrivateChannelResource<'a>(&'a Client, Id<UserMarker>);
 
 impl<'a> UserPrivateChannelResource<'a> {
     /// Create a resource instance to work with a user's private channels.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client, user_id: Id<UserMarker>) -> Self {
         Self(client, user_id)
     }
 
     /// Create a private channel with a user.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn post(&self) -> CreatePrivateChannel<'a> {
         self.0.create_private_channel(self.1)
     }

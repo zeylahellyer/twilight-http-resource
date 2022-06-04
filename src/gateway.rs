@@ -6,13 +6,11 @@ pub struct GatewayResource<'a>(&'a Client);
 
 impl<'a> GatewayResource<'a> {
     /// Create a resource instance to work with gateways.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn new(client: &'a Client) -> Self {
         Self(client)
     }
 
     /// Get a gateway.
-    #[must_use = "this is a builder and does nothing on its own"]
     pub const fn get(&self) -> GetGateway<'a> {
         self.0.gateway()
     }
