@@ -9,6 +9,8 @@
 //! Internally resource calls are simply calling their `twilight-http` Client
 //! equivalents and return the builders that are in turn returned by the Client.
 //!
+//! Supports Twilight 0.11.
+//!
 //! # Examples
 //!
 //! Delete a message in a channel:
@@ -17,14 +19,14 @@
 //! use std::env;
 //! use twilight_http_resource::Resource;
 //! use twilight_http::Client;
-//! use twilight_model::id::{ChannelId, MessageId};
+//! use twilight_model::id::{marker::{ChannelMarker, MessageMarker}, Id};
 //!
 //! # #[tokio::main] async fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! let client = Client::new(env::var("DISCORD_TOKEN")?);
-//! let channel_id = ChannelId(1);
-//! let message_id = MessageId(2);
+//! let channel_id = Id::new(1);
+//! let message_id = Id::new(2);
 //!
-//! client.channels().messages(channel_id).delete(message_id).await?;
+//! client.channels().messages(channel_id).delete(message_id).exec().await?;
 //! # Ok(()) }
 //! ```
 //!

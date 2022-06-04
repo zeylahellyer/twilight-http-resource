@@ -2,22 +2,28 @@ use twilight_http::{
     client::Client,
     request::guild::integration::{DeleteGuildIntegration, GetGuildIntegrations},
 };
-use twilight_model::id::{GuildId, IntegrationId};
+use twilight_model::id::{
+    marker::{GuildMarker, IntegrationMarker},
+    Id,
+};
 
 /// Work with a guild's integrations.
 #[derive(Clone, Debug)]
-pub struct GuildIntegrationResource<'a>(&'a Client, GuildId);
+pub struct GuildIntegrationResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildIntegrationResource<'a> {
     /// Create a resource instance to work with a guild's integrations.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete a guild's integration.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, integration_id: IntegrationId) -> DeleteGuildIntegration<'a> {
+    pub const fn delete(
+        &self,
+        integration_id: Id<IntegrationMarker>,
+    ) -> DeleteGuildIntegration<'a> {
         self.0.delete_guild_integration(self.1, integration_id)
     }
 

@@ -1,16 +1,16 @@
 //! Work with user private channels.
 
 use twilight_http::{client::Client, request::user::CreatePrivateChannel};
-use twilight_model::id::UserId;
+use twilight_model::id::{marker::UserMarker, Id};
 
 /// Work with users.
 #[derive(Clone, Debug)]
-pub struct UserPrivateChannelResource<'a>(&'a Client, UserId);
+pub struct UserPrivateChannelResource<'a>(&'a Client, Id<UserMarker>);
 
 impl<'a> UserPrivateChannelResource<'a> {
     /// Create a resource instance to work with a user's private channels.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, user_id: UserId) -> Self {
+    pub const fn new(client: &'a Client, user_id: Id<UserMarker>) -> Self {
         Self(client, user_id)
     }
 

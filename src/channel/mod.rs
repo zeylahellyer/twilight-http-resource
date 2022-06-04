@@ -19,7 +19,7 @@ use twilight_http::{
         CreateTypingTrigger, DeleteChannel, FollowNewsChannel, GetChannel, UpdateChannel,
     },
 };
-use twilight_model::id::ChannelId;
+use twilight_model::id::{marker::ChannelMarker, Id};
 
 /// Work with channels.
 #[derive(Clone, Debug)]
@@ -34,19 +34,19 @@ impl<'a> ChannelResource<'a> {
 
     /// Delete a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, id: ChannelId) -> DeleteChannel<'a> {
+    pub const fn delete(&self, id: Id<ChannelMarker>) -> DeleteChannel<'a> {
         self.0.delete_channel(id)
     }
 
     /// Get a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn get(&self, id: ChannelId) -> GetChannel<'a> {
+    pub const fn get(&self, id: Id<ChannelMarker>) -> GetChannel<'a> {
         self.0.channel(id)
     }
 
     /// Update a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn patch(&self, id: ChannelId) -> UpdateChannel<'a> {
+    pub const fn patch(&self, id: Id<ChannelMarker>) -> UpdateChannel<'a> {
         self.0.update_channel(id)
     }
 }
@@ -57,15 +57,15 @@ impl<'a> ChannelResource<'a> {
     #[must_use = "this is a builder and does nothing on its own"]
     pub const fn follow(
         &self,
-        id: ChannelId,
-        webhook_channel_id: ChannelId,
+        id: Id<ChannelMarker>,
+        webhook_channel_id: Id<ChannelMarker>,
     ) -> FollowNewsChannel<'a> {
         self.0.follow_news_channel(id, webhook_channel_id)
     }
 
     /// Trigger a typing indicator in a channel.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn typing(&self, id: ChannelId) -> CreateTypingTrigger<'a> {
+    pub const fn typing(&self, id: Id<ChannelMarker>) -> CreateTypingTrigger<'a> {
         self.0.create_typing_trigger(id)
     }
 }
@@ -74,13 +74,13 @@ impl<'a> ChannelResource<'a> {
 impl<'a> ChannelResource<'a> {
     /// Work with a channel's invites.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn invites(&self, channel_id: ChannelId) -> ChannelInviteResource<'a> {
+    pub const fn invites(&self, channel_id: Id<ChannelMarker>) -> ChannelInviteResource<'a> {
         ChannelInviteResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's messages.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn messages(&self, channel_id: ChannelId) -> ChannelMessageResource<'a> {
+    pub const fn messages(&self, channel_id: Id<ChannelMarker>) -> ChannelMessageResource<'a> {
         ChannelMessageResource::new(self.0, channel_id)
     }
 
@@ -88,20 +88,20 @@ impl<'a> ChannelResource<'a> {
     #[must_use = "this is a builder and does nothing on its own"]
     pub const fn permission_overwrites(
         &self,
-        channel_id: ChannelId,
+        channel_id: Id<ChannelMarker>,
     ) -> ChannelPermissionOverwriteResource<'a> {
         ChannelPermissionOverwriteResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's pins.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn pins(&self, channel_id: ChannelId) -> ChannelPinResource<'a> {
+    pub const fn pins(&self, channel_id: Id<ChannelMarker>) -> ChannelPinResource<'a> {
         ChannelPinResource::new(self.0, channel_id)
     }
 
     /// Work with a channel's webhooks.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn webhooks(&self, channel_id: ChannelId) -> ChannelWebhookResource<'a> {
+    pub const fn webhooks(&self, channel_id: Id<ChannelMarker>) -> ChannelWebhookResource<'a> {
         ChannelWebhookResource::new(self.0, channel_id)
     }
 }

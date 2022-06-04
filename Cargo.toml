@@ -15,10 +15,11 @@ repository = "https://github.com/zeylahellyer/twilight-http-resource"
 version = "0.1.0"
 
 [dependencies]
-twilight-http = { default-features = false, version = "0.8" }
-twilight-model = { default-features = false, version = "0.8" }
+twilight-http = { default-features = false, version = "0.11" }
+twilight-model = { default-features = false, version = "0.11" }
+twilight-validate = { default-features = false, version = "0.11" }
 
 [dev-dependencies]
 static_assertions = { default-features = false, version = "1.0" }
-twilight-http = { default-features = false, features = ["rustls"], version = "0.8" }
 tokio = { default-features = false, features = ["macros", "rt-multi-thread"], version = "1.0" }
+twilight-http = { default-features = false, features = ["rustls-webpki-roots"], version = "0.11" }

@@ -2,16 +2,16 @@ use twilight_http::{
     client::Client,
     request::guild::{CreateGuildPrune, GetGuildPruneCount},
 };
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
 
 /// Work with a guild's RPC pruning.
 #[derive(Clone, Debug)]
-pub struct GuildPruneRpc<'a>(&'a Client, GuildId);
+pub struct GuildPruneRpc<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildPruneRpc<'a> {
     /// Create a resource instance to work with a guild's pruning.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 

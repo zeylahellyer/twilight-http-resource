@@ -11,33 +11,36 @@ use twilight_http::{
         GetMessage, UpdateMessage,
     },
 };
-use twilight_model::id::{ChannelId, MessageId};
+use twilight_model::id::{
+    marker::{ChannelMarker, MessageMarker},
+    Id,
+};
 
 /// Work with a channel's messages.
 #[derive(Clone, Debug)]
-pub struct ChannelMessageResource<'a>(&'a Client, ChannelId);
+pub struct ChannelMessageResource<'a>(&'a Client, Id<ChannelMarker>);
 
 impl<'a> ChannelMessageResource<'a> {
     /// Create a resource instance to work with a channel's messages.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: ChannelId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<ChannelMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete multiple channel messages.
-    pub const fn delete_list(&self, message_ids: &'a [MessageId]) -> DeleteMessages<'a> {
+    pub const fn delete_list(&self, message_ids: &'a [Id<MessageMarker>]) -> DeleteMessages<'a> {
         self.0.delete_messages(self.1, message_ids)
     }
 
     /// Delete a channel message.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, message_id: MessageId) -> DeleteMessage<'a> {
+    pub const fn delete(&self, message_id: Id<MessageMarker>) -> DeleteMessage<'a> {
         self.0.delete_message(self.1, message_id)
     }
 
     /// Get a channel message.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn get(&self, message_id: MessageId) -> GetMessage<'a> {
+    pub const fn get(&self, message_id: Id<MessageMarker>) -> GetMessage<'a> {
         self.0.message(self.1, message_id)
     }
 
@@ -49,7 +52,7 @@ impl<'a> ChannelMessageResource<'a> {
 
     /// Update a channel message.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn patch(&self, message_id: MessageId) -> UpdateMessage<'a> {
+    pub const fn patch(&self, message_id: Id<MessageMarker>) -> UpdateMessage<'a> {
         self.0.update_message(self.1, message_id)
     }
 
@@ -64,7 +67,7 @@ impl<'a> ChannelMessageResource<'a> {
 impl<'a> ChannelMessageResource<'a> {
     /// Crosspost a channel message.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn crosspost(&self, message_id: MessageId) -> CrosspostMessage<'a> {
+    pub fn crosspost(&self, message_id: Id<MessageMarker>) -> CrosspostMessage<'a> {
         self.0.crosspost_message(self.1, message_id)
     }
 }

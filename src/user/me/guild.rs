@@ -2,7 +2,7 @@ use twilight_http::{
     client::Client,
     request::user::{GetCurrentUserGuilds, LeaveGuild},
 };
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
 
 /// Work with a current user's guilds.
 #[derive(Clone, Debug)]
@@ -17,7 +17,7 @@ impl<'a> UserMeGuildResource<'a> {
 
     /// Leave one of the current user's guilds.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, guild_id: GuildId) -> LeaveGuild<'a> {
+    pub const fn delete(&self, guild_id: Id<GuildMarker>) -> LeaveGuild<'a> {
         self.0.leave_guild(guild_id)
     }
 

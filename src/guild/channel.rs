@@ -1,21 +1,21 @@
 use twilight_http::{
     client::Client,
     request::guild::{
-        create_guild_channel::{CreateGuildChannel, CreateGuildChannelError},
-        update_guild_channel_positions::Position,
-        GetGuildChannels, UpdateGuildChannelPositions,
+        update_guild_channel_positions::Position, CreateGuildChannel, GetGuildChannels,
+        UpdateGuildChannelPositions,
     },
 };
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
+use twilight_validate::channel::ChannelValidationError;
 
 /// Work with a guild's channels.
 #[derive(Clone, Debug)]
-pub struct GuildChannelResource<'a>(&'a Client, GuildId);
+pub struct GuildChannelResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildChannelResource<'a> {
     /// Create a resource instance to work with a guild's channels.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
@@ -39,7 +39,7 @@ impl<'a> GuildChannelResource<'a> {
     ///
     /// [`Client::create_guild_channel`]: twilight_http::Client::create_guild_channel
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: &'a str) -> Result<CreateGuildChannel<'a>, CreateGuildChannelError> {
+    pub fn post(&self, name: &'a str) -> Result<CreateGuildChannel<'a>, ChannelValidationError> {
         self.0.create_guild_channel(self.1, name)
     }
 }

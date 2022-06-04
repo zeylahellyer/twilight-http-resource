@@ -2,16 +2,17 @@ use twilight_http::{
     client::Client,
     request::channel::webhook::{CreateWebhook, GetChannelWebhooks},
 };
-use twilight_model::id::ChannelId;
+use twilight_model::id::{marker::ChannelMarker, Id};
+use twilight_validate::request::ValidationError;
 
 /// Work with a channel's webhooks.
 #[derive(Clone, Debug)]
-pub struct ChannelWebhookResource<'a>(&'a Client, ChannelId);
+pub struct ChannelWebhookResource<'a>(&'a Client, Id<ChannelMarker>);
 
 impl<'a> ChannelWebhookResource<'a> {
     /// Create a resource instance to work with a channel's webhooks.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, channel_id: ChannelId) -> Self {
+    pub const fn new(client: &'a Client, channel_id: Id<ChannelMarker>) -> Self {
         Self(client, channel_id)
     }
 
@@ -22,8 +23,14 @@ impl<'a> ChannelWebhookResource<'a> {
     }
 
     /// Create a channel webhook.
+    ///
+    /// # Errors
+    ///
+    /// Refer to [`Client::create_webhook`] for error information.
+    ///
+    /// [`Client::create_webhook`]: twilight_http::Client::create_webhook
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: &'a str) -> CreateWebhook<'a> {
+    pub fn post(&self, name: &'a str) -> Result<CreateWebhook<'a>, ValidationError> {
         self.0.create_webhook(self.1, name)
     }
 }

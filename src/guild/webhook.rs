@@ -1,14 +1,14 @@
 use twilight_http::{client::Client, request::guild::GetGuildWebhooks};
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
 
 /// Work with a guild's webhooks.
 #[derive(Clone, Debug)]
-pub struct GuildWebhookResource<'a>(&'a Client, GuildId);
+pub struct GuildWebhookResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildWebhookResource<'a> {
     /// Create a resource instance to work with a guild's webhooks.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 

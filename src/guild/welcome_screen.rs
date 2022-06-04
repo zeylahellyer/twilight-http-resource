@@ -2,16 +2,16 @@ use twilight_http::{
     client::Client,
     request::guild::{GetGuildWelcomeScreen, UpdateGuildWelcomeScreen},
 };
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
 
 /// Work with a guild's welcome screen.
 #[derive(Clone, Debug)]
-pub struct GuildWelcomeScreenResource<'a>(&'a Client, GuildId);
+pub struct GuildWelcomeScreenResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildWelcomeScreenResource<'a> {
     /// Create a resource instance to work with a guild's welcome screen.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 

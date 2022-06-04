@@ -7,7 +7,7 @@ mod private_channel;
 pub use self::{me::UserMeResource, private_channel::UserPrivateChannelResource};
 
 use twilight_http::{client::Client, request::user::GetUser};
-use twilight_model::id::UserId;
+use twilight_model::id::{marker::UserMarker, Id};
 
 /// Work with users.
 #[derive(Clone, Debug)]
@@ -22,7 +22,7 @@ impl<'a> UserResource<'a> {
 
     /// Get a user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn get(&self, id: UserId) -> GetUser<'a> {
+    pub const fn get(&self, id: Id<UserMarker>) -> GetUser<'a> {
         self.0.user(id)
     }
 }
@@ -37,7 +37,7 @@ impl<'a> UserResource<'a> {
 
     /// Work with a user.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn private_channel(&self, user_id: UserId) -> UserPrivateChannelResource<'a> {
+    pub const fn private_channel(&self, user_id: Id<UserMarker>) -> UserPrivateChannelResource<'a> {
         UserPrivateChannelResource::new(self.0, user_id)
     }
 }

@@ -2,28 +2,31 @@ use twilight_http::{
     client::Client,
     request::guild::emoji::{CreateEmoji, DeleteEmoji, GetEmoji, GetEmojis, UpdateEmoji},
 };
-use twilight_model::id::{EmojiId, GuildId};
+use twilight_model::id::{
+    marker::{EmojiMarker, GuildMarker},
+    Id,
+};
 
 /// Work with a guild's emojis.
 #[derive(Clone, Debug)]
-pub struct GuildEmojiResource<'a>(&'a Client, GuildId);
+pub struct GuildEmojiResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildEmojiResource<'a> {
     /// Create a resource instance to work with a guild's emojis.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, emoji_id: EmojiId) -> DeleteEmoji<'a> {
+    pub const fn delete(&self, emoji_id: Id<EmojiMarker>) -> DeleteEmoji<'a> {
         self.0.delete_emoji(self.1, emoji_id)
     }
 
     /// Get a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn get(&self, emoji_id: EmojiId) -> GetEmoji<'a> {
+    pub const fn get(&self, emoji_id: Id<EmojiMarker>) -> GetEmoji<'a> {
         self.0.emoji(self.1, emoji_id)
     }
 
@@ -35,12 +38,12 @@ impl<'a> GuildEmojiResource<'a> {
 
     /// Update a guild emoji.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn patch(&self, emoji_id: EmojiId) -> UpdateEmoji<'a> {
+    pub const fn patch(&self, emoji_id: Id<EmojiMarker>) -> UpdateEmoji<'a> {
         self.0.update_emoji(self.1, emoji_id)
     }
 
     /// Create a guild emoji.
-    pub const fn post(&self, name: &'a str, image: &'a str) -> CreateEmoji<'a> {
+    pub const fn post(&self, name: &'a str, image: &'a [u8]) -> CreateEmoji<'a> {
         self.0.create_emoji(self.1, name, image)
     }
 }

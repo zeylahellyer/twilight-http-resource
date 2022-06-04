@@ -8,7 +8,7 @@ use twilight_http::{
     client::Client,
     request::channel::webhook::{DeleteWebhook, GetWebhook, UpdateWebhook, UpdateWebhookWithToken},
 };
-use twilight_model::id::WebhookId;
+use twilight_model::id::{marker::WebhookMarker, Id};
 
 /// Work with webhooks.
 #[derive(Clone, Debug)]
@@ -23,19 +23,19 @@ impl<'a> WebhookResource<'a> {
 
     /// Delete a webhook.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, id: WebhookId) -> DeleteWebhook<'a> {
+    pub const fn delete(&self, id: Id<WebhookMarker>) -> DeleteWebhook<'a> {
         self.0.delete_webhook(id)
     }
 
     /// Get a webhook.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn get(&self, id: WebhookId) -> GetWebhook<'a> {
+    pub const fn get(&self, id: Id<WebhookMarker>) -> GetWebhook<'a> {
         self.0.webhook(id)
     }
 
     /// Update a webhook.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn patch(&self, id: WebhookId) -> UpdateWebhook<'a> {
+    pub const fn patch(&self, id: Id<WebhookMarker>) -> UpdateWebhook<'a> {
         self.0.update_webhook(id)
     }
 }
@@ -46,7 +46,7 @@ impl<'a> WebhookResource<'a> {
     #[must_use = "this is a builder and does nothing on its own"]
     pub const fn patch_with_token(
         &self,
-        id: WebhookId,
+        id: Id<WebhookMarker>,
         token: &'a str,
     ) -> UpdateWebhookWithToken<'a> {
         self.0.update_webhook_with_token(id, token)
@@ -57,7 +57,11 @@ impl<'a> WebhookResource<'a> {
 impl<'a> WebhookResource<'a> {
     /// Work with a webhook's messages.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn messages(&self, id: WebhookId, token: &'a str) -> WebhookMessageResource<'a> {
+    pub const fn messages(
+        &self,
+        id: Id<WebhookMarker>,
+        token: &'a str,
+    ) -> WebhookMessageResource<'a> {
         WebhookMessageResource::new(self.0, id, token)
     }
 }

@@ -2,15 +2,18 @@ use twilight_http::{
     client::Client,
     request::guild::{GetGuildWidget, UpdateGuildWidget},
 };
-use twilight_model::id::{GuildId, RoleId};
+use twilight_model::id::{
+    marker::{GuildMarker, RoleMarker},
+    Id,
+};
 
 /// Work with a guild's widget.
 #[derive(Clone, Debug)]
-pub struct GuildWidgetResource<'a>(&'a Client, GuildId);
+pub struct GuildWidgetResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildWidgetResource<'a> {
     /// Create a resource instance to work with a guild's widget.
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
@@ -20,7 +23,7 @@ impl<'a> GuildWidgetResource<'a> {
     }
 
     /// Update a guild's widget.
-    pub const fn patch(&self, role_id: RoleId) -> UpdateGuildWidget<'a> {
+    pub const fn patch(&self, role_id: Id<RoleMarker>) -> UpdateGuildWidget<'a> {
         self.0.update_guild_widget(self.1, role_id)
     }
 }

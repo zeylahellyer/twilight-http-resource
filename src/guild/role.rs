@@ -2,22 +2,25 @@ use twilight_http::{
     client::Client,
     request::guild::role::{CreateRole, DeleteRole, GetGuildRoles, UpdateRole},
 };
-use twilight_model::id::{GuildId, RoleId};
+use twilight_model::id::{
+    marker::{GuildMarker, RoleMarker},
+    Id,
+};
 
 /// Work with a guild's roles.
 #[derive(Clone, Debug)]
-pub struct GuildRoleResource<'a>(&'a Client, GuildId);
+pub struct GuildRoleResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildRoleResource<'a> {
     /// Create a resource instance to work with a guild's roles.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
     /// Delete a guild's role.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn delete(&self, role_id: RoleId) -> DeleteRole<'a> {
+    pub const fn delete(&self, role_id: Id<RoleMarker>) -> DeleteRole<'a> {
         self.0.delete_role(self.1, role_id)
     }
 
@@ -29,7 +32,7 @@ impl<'a> GuildRoleResource<'a> {
 
     /// Update a guild's role.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn patch(&self, role_id: RoleId) -> UpdateRole<'a> {
+    pub const fn patch(&self, role_id: Id<RoleMarker>) -> UpdateRole<'a> {
         self.0.update_role(self.1, role_id)
     }
 

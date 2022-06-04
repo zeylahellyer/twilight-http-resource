@@ -1,20 +1,20 @@
 use twilight_http::{
     client::Client,
     request::template::{
-        create_template::{CreateTemplate, CreateTemplateError},
-        DeleteTemplate, GetTemplates, SyncTemplate, UpdateTemplate,
+        CreateTemplate, DeleteTemplate, GetTemplates, SyncTemplate, UpdateTemplate,
     },
 };
-use twilight_model::id::GuildId;
+use twilight_model::id::{marker::GuildMarker, Id};
+use twilight_validate::request::ValidationError;
 
 /// Work with a guild's templates.
 #[derive(Clone, Debug)]
-pub struct GuildTemplateResource<'a>(&'a Client, GuildId);
+pub struct GuildTemplateResource<'a>(&'a Client, Id<GuildMarker>);
 
 impl<'a> GuildTemplateResource<'a> {
     /// Create a resource instance to work with a guild's templates.
     #[must_use = "this is a builder and does nothing on its own"]
-    pub const fn new(client: &'a Client, guild_id: GuildId) -> Self {
+    pub const fn new(client: &'a Client, guild_id: Id<GuildMarker>) -> Self {
         Self(client, guild_id)
     }
 
@@ -43,7 +43,7 @@ impl<'a> GuildTemplateResource<'a> {
     ///
     /// [`Client::create_template`]: twilight_http::Client::create_template
     #[must_use = "this is a builder and does nothing on its own"]
-    pub fn post(&self, name: &'a str) -> Result<CreateTemplate<'a>, CreateTemplateError> {
+    pub fn post(&self, name: &'a str) -> Result<CreateTemplate<'a>, ValidationError> {
         self.0.create_template(self.1, name)
     }
 }
