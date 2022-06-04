@@ -60,7 +60,7 @@ impl<'a> ChannelMessageResource<'a> {
 /// RPC calls.
 impl<'a> ChannelMessageResource<'a> {
     /// Crosspost a channel message.
-    pub fn crosspost(&self, message_id: Id<MessageMarker>) -> CrosspostMessage<'a> {
+    pub const fn crosspost(&self, message_id: Id<MessageMarker>) -> CrosspostMessage<'a> {
         self.0.crosspost_message(self.1, message_id)
     }
 }

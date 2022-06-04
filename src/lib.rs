@@ -50,7 +50,7 @@
 
 #![deny(
     clippy::all,
-    clippy::clippy::missing_const_for_fn,
+    clippy::missing_const_for_fn,
     clippy::pedantic,
     future_incompatible,
     missing_docs,

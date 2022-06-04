@@ -18,17 +18,17 @@ impl<'a> GuildTemplateResource<'a> {
     }
 
     /// Delete a guild's template.
-    pub fn delete(&self, code: &'a str) -> DeleteTemplate<'a> {
+    pub const fn delete(&self, code: &'a str) -> DeleteTemplate<'a> {
         self.0.delete_template(self.1, code)
     }
 
     /// List a guild's templates.
-    pub fn list(&self) -> GetTemplates<'a> {
+    pub const fn list(&self) -> GetTemplates<'a> {
         self.0.get_templates(self.1)
     }
 
     /// Update a guild template.
-    pub fn patch(&self, template_code: &'a str) -> UpdateTemplate<'a> {
+    pub const fn patch(&self, template_code: &'a str) -> UpdateTemplate<'a> {
         self.0.update_template(self.1, template_code)
     }
 
@@ -47,7 +47,7 @@ impl<'a> GuildTemplateResource<'a> {
 /// RPC calls.
 impl<'a> GuildTemplateResource<'a> {
     /// Sync a guild's template.
-    pub fn sync(&self, code: &'a str) -> SyncTemplate<'a> {
+    pub const fn sync(&self, code: &'a str) -> SyncTemplate<'a> {
         self.0.sync_template(self.1, code)
     }
 }

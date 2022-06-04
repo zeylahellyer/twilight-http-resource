@@ -16,7 +16,7 @@ impl<'a> ChannelWebhookResource<'a> {
     }
 
     /// List a channel's webhooks.
-    pub fn list(&self) -> GetChannelWebhooks<'a> {
+    pub const fn list(&self) -> GetChannelWebhooks<'a> {
         self.0.channel_webhooks(self.1)
     }
 
